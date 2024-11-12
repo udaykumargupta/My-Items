@@ -1,0 +1,21 @@
+Problem Statement:- Given a Number N , find all prime Numbers till N.
+
+Template:-
+    void solve(vector<int>&isPrime,int n){
+        isPrime[0]=0;
+        isPrime[1]=0;
+        for(int i=2;i*i<=n;i++){
+            for(int j=i*i;j<=n;j+=i){
+                isPrime[j]=0;
+            }
+        }
+    }
+
+    void findAllPrimesTillN(int N){
+        vector<int>isPrime(N+1,1);
+        solve(isPrime,N);
+    }
+
+    Time Complexity:O(N*log(log(N)))
+    
+
