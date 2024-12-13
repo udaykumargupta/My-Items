@@ -1,0 +1,18 @@
+Eulerian Path:-    A path of edges that visits all the edges in graph exactly once (all non zero degree vertex must be connected).
+                   Start vertex and end vertex has odd degeree and rest all vertex has even degree.
+                   In directed graph for Starting node:-outdegree[node]-indegree[node]==1
+                                         Ending node:-  indegree[node]-outdegree[node]==1
+                                         Rest all node:-indegree[node]==outdegree[node]
+
+Eulerian Circuit:- An Eulerian path that starts and ends at same node. 
+                   all nodes have even degree(equal indegree and outdegree of each node in case of directed graph).
+
+Semi-Eulerian Graph:- Eulerian Path but no Eulerian Circuit.
+
+Eulerian Graph:-      Both Eulerian Path and Eulerian Circuit.
+
+To check whether given graph has Eulerian path , Eulerian Circuit or none.
+                1> isConnected() i.e all non zero degree node should belong to one component
+                2> if noOfOddDegreeNode==2 =>Eulerian Path
+                      noOfOddDegreeNode==0 =>Eulerian Circuit
+                      else none
