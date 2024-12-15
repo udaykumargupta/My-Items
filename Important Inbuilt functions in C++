@@ -1,0 +1,14 @@
+1> int a=memcmp(string a,string b, int lengthToBeCompared);
+       if(a==0) =>Equal 
+       if(a<0)  =>String a is less than String b
+       if(a>0)  =>String a is greater than String b
+  int a=memcmp(a.c_str(),b.c_str()+i,int lengthToBeCompared);
+      =>comparing string a starting from index 0 with string b starting from index i upto length given.
+  T.C =O(N)
+      
+2> s.c_str()
+   The c_str() method converts a string to an array of characters with a null character at the end.
+   The function takes in no parameters and returns a pointer to this character array.
+   s.c_str()[i]->will give ith charecter of string s
+   
+        
