@@ -1,0 +1,25 @@
+Template:-
+
+    int parent[1e5+1];
+    int   size[1e5+1];
+
+    void make(int node){
+        parent[node]=node;
+        size[node]=1;
+    }
+
+    int find(int node){
+        if(node==parent[node])return node;
+        return parent[node]=find(parent[node]);
+    }
+    void Union(int a,int b){
+        a=find(a);
+        b=find(b);
+        if(a!=b){
+            if(size[a]<size[b]){
+                swap(a,b);
+            }
+            parent[b]=a;
+            size[a]+=size[b];
+        }
+    }
