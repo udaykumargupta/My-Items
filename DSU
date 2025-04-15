@@ -23,3 +23,21 @@ Template:-
             size[a]+=size[b];
         }
     }
+
+Time Complexity-
+
+Function	   Time Complexity
+make(x)	       O(1)
+find(x)	       O(α(n)) (with path compression)
+Union(x, y)	   O(α(n)) (with path compression and union by rank/size)
+
+
+The above given Time Complexity is Amortized T.C which means the average time per operation over a sequence of operations,
+even if some operations take longer.
+
+It's used when:
+Occasional operations are expensive, but
+Most operations are cheap, and
+The expensive ones happen rarely.
+
+O(α(n))->inverse Ackerman function(value increases slowly)
