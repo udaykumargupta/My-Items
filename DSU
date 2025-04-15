@@ -1,7 +1,7 @@
 Template:-
 
-    int parent[1e5+1];
-    int   size[1e5+1];
+    int parent[100000+1];
+    int   size[100000+1];
 
     void make(int node){
         parent[node]=node;
