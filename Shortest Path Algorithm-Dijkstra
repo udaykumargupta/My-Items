@@ -1,0 +1,35 @@
+Template:-
+
+vector<int> dijkstra(int src, int n, vector<vector<pair<int, int>>>& adj) {
+    vector<int> distance(n, INT_MAX);
+    distance[src] = 0;
+    priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> pq;
+    pq.push({0, src});
+
+    while (!pq.empty()) {
+        int dis = pq.top().first;
+        int node = pq.top().second;
+        pq.pop();
+
+        // If we already found a better path, skip
+        if (dis > distance[node]) continue;
+
+        for (auto& it : adj[node]) {
+            int adjNode=it.first;
+            int weight=it.second;
+            if (dis + weight < distance[adjNode]) {
+                distance[adjNode] = dis + weight;
+                pq.push({distance[adjNode], adjNode});
+            }
+        }
+    }
+
+    return distance;
+}
+
+T.C:-O(ElogV) // E->total number of Edges   
+              // V->total number of nodes
+
+Application-
+Used to find shortest path from source to other nodes in weighted graph.
+Cannot be used if graph contains edges with negative edge weights.
