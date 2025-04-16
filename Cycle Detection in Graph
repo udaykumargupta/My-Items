@@ -1,0 +1,118 @@
+Undirected Graph-
+
+1> dfs
+
+bool dfs(int node, int parent, vector<int> &visited, vector<int> adj[]) {
+    visited[node] = 1;
+    for (auto it : adj[node]) {
+        if (!visited[it]) {
+            if (dfs(it, node, visited, adj)) return true;
+        } else if (it != parent) {
+            return true;
+        }
+    }
+    return false;
+}
+
+2> bfs
+
+bool bfs(int start, vector<int> &visited, vector<int> adj[]) {
+    queue<pair<int, int>> q;
+    visited[start] = 1;
+    q.push({start, -1});
+
+    while (!q.empty()) {
+        int node = q.front().first;
+        int parent = q.front().second;
+        q.pop();
+
+        for (auto it : adj[node]) {
+            if (!visited[it]) {
+                visited[it] = 1;
+                q.push({it, node});
+            } else if (it != parent) {
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
+3> DSU
+    int parent[100000+1];
+    int   size[100000+1];
+
+    void make(int node){
+        parent[node]=node;
+        size[node]=1;
+    }
+
+    int find(int node){
+        if(node==parent[node])return node;
+        return parent[node]=find(parent[node]);
+    }
+    bool Union(int a,int b){
+        a=find(a);
+        b=find(b);
+        if(a!=b){
+            if(size[a]<size[b]){
+                swap(a,b);
+            }
+            parent[b]=a;
+            size[a]+=size[b];
+            return false;
+        }
+        else return true;
+
+    }
+
+Directed Graph  -
+
+1> dfs (visited vector,path visited vector)
+bool dfs(int node, vector<int> &visited, vector<int> &pathVisited, vector<int> adj[]) {
+    visited[node] = 1;
+    pathVisited[node] = 1;
+
+    for (auto it : adj[node]) {
+        if (!visited[it]) {
+            if (dfs(it, visited, pathVisited, adj)) return true;
+        } else if (pathVisited[it]) {
+            return true;
+        }
+    }
+
+    pathVisited[node] = 0;
+    return false;
+}
+
+2>Topological sort (Kahn's Algorithm)
+
+bool isCyclic(int V, vector<int> adj[]) {
+    vector<int> indegree(V, 0);
+    for (int i = 0; i < V; i++) {
+        for (auto it : adj[i]) indegree[it]++;
+    }
+
+    queue<int> q;
+    for (int i = 0; i < V; i++) {
+        if (indegree[i] == 0) q.push(i);
+    }
+
+    int count = 0;
+    while (!q.empty()) {
+        int node = q.front(); q.pop();
+        count++;
+
+        for (auto it : adj[node]) {
+            indegree[it]--;
+            if (indegree[it] == 0) q.push(it);
+        }
+    }
+
+    return count != V; // if count != number of nodes, cycle exists
+}
+
+Directed Graph with negative cycle
+
+1>Bellman Ford Algorithm
+2>Floyd Warshal Algorithm
