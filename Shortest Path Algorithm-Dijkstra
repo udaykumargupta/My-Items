@@ -33,3 +33,7 @@ T.C:-O(ElogV) // E->total number of Edges
 Application-
 Used to find shortest path from source to other nodes in weighted graph.
 Cannot be used if graph contains edges with negative edge weights.
+
+
+Note:-Use BFS for shortest path when the graph is undirected or have unit weights.
+Dijkstra Algorithm is designed for graphs without constraints on the the number of stops at node etc(BFS like approach is more suitable).
