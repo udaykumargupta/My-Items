@@ -14,6 +14,13 @@ vector<int> dijkstra(int src, int n, vector<vector<pair<int, int>>>& adj) {
         // If we already found a better path, skip
         if (dis > distance[node]) continue;
 
+        /*
+        use visited according to need of the problem
+        if(visited[node])continue;
+        visited[node]=1;
+        */
+
+
         for (auto& it : adj[node]) {
             int adjNode=it.first;
             int weight=it.second;
