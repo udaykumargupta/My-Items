@@ -1,0 +1,35 @@
+1> Graph Traversal Algorithms
+    DFS
+    BFS
+
+2> Shortest Path Algorithms
+    Unweighted Graphs: 
+      BFS
+    Weighted Graphs:
+      Dijkstra's Algorithm (Greedy, min-heap)
+      Bellman-Ford Algorithm (Handles negative weights)
+      Floyd-Warshall Algorithm (All-pairs shortest paths)
+    0-1 BFS,Multi-Source BFS,Bidirectional BFS
+
+3> Minimum Spanning Tree (MST)
+      Kruskal’s Algorithm (Union-Find based)
+      Prim’s Algorithm (Min-heap based)
+
+4> Cycle Detection in Graph
+
+5> Advanced Graph Concepts
+      Disjoint Set Union (DSU) / Union-Find
+      Bridge and Articulation Point (Tarjan’s Algorithm)
+      Strongly Connected Components (SCC):
+          Kosaraju’s Algorithm
+          Tarjan’s Algorithm
+
+6> Topological Sort
+      DFS
+      BFS(Kahn's Algorithm)
+
+7> Bipatite Graph
+
+8> Grid as Graph
+      Graph problems on 2D grids (like shortest path in maze)
+      BFS/DFS in grid
