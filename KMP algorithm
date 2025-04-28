@@ -1,8 +1,8 @@
 KMP(Knuth-Morris-Pratt) Algorithm:-is a string-searching algorithm which is used to find a pattern(string) within large texts efficiently.
-                                   LPS(LPS is the Longest Proper Prefix which is also a Suffix) array of pattern eis used
+                                   LPS(LPS is the Longest Proper Prefix which is also a Suffix) array of pattern is used
                                    example:- pattern=aaacaaaa
                                              LPS    =01201233
-ComputeLPS(vector<int>&lps.string &pattern){
+ComputeLPS(vector<int>&lps,string &pattern){
   int n=pattern.size();
   int len=0; //length of previous longest prefix and suffix which were equal 
   lps[0]=0;
@@ -60,3 +60,31 @@ ComputeLPS(vector<int>&lps.string &pattern){
         }
      
 };
+
+KMP algorithm template;
+    vector<int> kmpMatch(const string& text, const string& pat) {
+        int n = text.size(), m = pat.size();
+        if (m == 0 || n < m)
+            return {};
+        vector<int> lps(m, 0);
+        for (int i = 1, len = 0; i < m; ++i) {
+            while (len && pat[i] != pat[len])
+                len = lps[len - 1];
+            if (pat[i] == pat[len])
+                ++len;
+            lps[i] = len;
+        }
+        vector<int> pos;
+        for (int i = 0, j = 0; i < n; ++i) {
+            while (j && text[i] != pat[j])
+                j = lps[j - 1];
+            if (text[i] == pat[j])
+                ++j;
+            if (j == m) {
+                pos.push_back(i - m + 1);
+                j = lps[j - 1];
+            }
+        }
+        return pos;
+    }
+    
