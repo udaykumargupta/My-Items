@@ -1,3 +1,18 @@
 1> whenever there is quesiton asking for count the number of subarrays which satisfies certain conditions given in question
    try to fix one end of the subarray(left or right) lets say right and count all subarrays ending at r satisfing the condition
    for  0<=r<n.(LC 3525)
+
+2> To use comparator in heap
+   The comparator type must be a named type (like a struct or a std::function)
+   for example
+      struct Compare {
+       bool operator()(pair<int, int>& p1, pair<int, int>& p2) {
+           if (p1.first < p2.first) {
+               return true;
+           } else if (p1.first == p2.first && p1.second < p2.second) {
+               return true;
+           }
+           return false;
+       }
+   };
+   priority_queue<pair<int, int>, vector<pair<int, int>>, Compare> max_heap;
