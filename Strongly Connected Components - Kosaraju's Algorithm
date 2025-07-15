@@ -1,3 +1,7 @@
+1>sort the vertices according to the finish time
+2>reverse the graph
+3>apply dfs according to the finish time
+
 class Solution {
 private:
     void dfs(int node,stack<int>&st,vector<int>&visited,vector<vector<int>>&adj){
