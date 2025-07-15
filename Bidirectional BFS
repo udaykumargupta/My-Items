@@ -1,0 +1,51 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+bool bidirectionalBFS(vector<vector<int>>& adj, int src, int dest, int n) {
+    if (src == dest) return true;
+
+    // visited and parent for both searches
+    vector<bool> visitedFromSrc(n, false), visitedFromDest(n, false);
+    queue<int> qSrc, qDest;
+
+    qSrc.push(src);
+    visitedFromSrc[src] = true;
+
+    qDest.push(dest);
+    visitedFromDest[dest] = true;
+
+    while (!qSrc.empty() && !qDest.empty()) {
+        // expand one level from source side
+        int sz1 = qSrc.size();
+        while (sz1--) {
+            int node = qSrc.front(); qSrc.pop();
+            for (int neighbor : adj[node]) {
+                if (visitedFromDest[neighbor]) {
+                    // paths meet here
+                    return true;
+                }
+                if (!visitedFromSrc[neighbor]) {
+                    visitedFromSrc[neighbor] = true;
+                    qSrc.push(neighbor);
+                }
+            }
+        }
+
+        // expand one level from destination side
+        int sz2 = qDest.size();
+        while (sz2--) {
+            int node = qDest.front(); qDest.pop();
+            for (int neighbor : adj[node]) {
+                if (visitedFromSrc[neighbor]) {
+                    return true;
+                }
+                if (!visitedFromDest[neighbor]) {
+                    visitedFromDest[neighbor] = true;
+                    qDest.push(neighbor);
+                }
+            }
+        }
+    }
+
+    return false; // no path found
+}
