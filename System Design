@@ -1,0 +1,57 @@
+Design Task Manager    
+
+class Task{
+        public:
+        int taskId;
+        int userId;
+        int priority;
+        bool removed;
+        Task(){
+
+        }
+        Task(int taskId,int userId,int priority){
+            this->taskId=taskId;
+            this->userId=userId;
+            this->priority=priority;
+            this->removed=false;
+        }
+    };
+
+
+
+Rule of Thumb
+. (dot operator) → used when you have an object.
+-> (arrow operator) → used when you have a pointer to an object.
+
+Comparator for priority_queue
+set / multiset
+map / multimap
+sort etc
+
+class Compare {
+        public:
+        bool operator()( const Task &a,  const Task &b) const {
+            if (a.priority == b.priority)
+                return a.taskId < b.taskId; 
+            return a.priority < b.priority; 
+        }
+    };
+priority_queue<Task,vector<Task>,Compare>TaskQueue;
+
+It's a good habit to make default constructor when you make paremetrised constructor
+
+
+new Task(it[1], it[0], it[2]);
+new Task(...) returns a pointer to Task (Task*), not a Task object.
+If you want to keep Task by value (simpler, but copies objects):Task t(it[0], it[1], it[2]);
+Here everything is stored by value → priority_queue and unordered_map both hold full copies of the Task.
+If you want to avoid copies (useful if you’ll mark removed or mutate later):
+Task* t = new Task(it[0], it[1], it[2]);
+
+
+
+priority_queue does not reorder itself if you change an element already inside it
+for example if we are storing address and changing value at the address the pq will not rearrange element in itself
+
+
+adding a destructor to prevent memory leaks on destruction.=>delete all the elements of the datastructure
